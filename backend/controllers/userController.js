@@ -94,13 +94,13 @@ export const loginUser = asyncHandler(async (req, res) => {
 })
 
 export const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find({})
+  const users = await User.find({}).select('-password')
   res.json(users)
 })
 
 export const updateUserRole = asyncHandler(async (req, res) => {
   const { id } = req.params
-  const { status } = req.body
+  const { role } = req.body
 
   if (!role) {
     res.status(400)
